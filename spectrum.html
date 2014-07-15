@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>Radio Spectrum Display</title>
+<link rel="stylesheet" href="common.css">
+
+<script src="rtlcom.js"></script>
+<script src="r820t.js"></script>
+<script src="rtl2832u.js"></script>
+<script src="radiocontroller.js"></script>
+
+<script src="js/three.min.js"></script>
+<script src="js/TrackballControls.js"></script>
+<script src="js/Detector.js"></script>
+<script src="js/stats.min.js"></script>
+<script src="Lut.js"></script>
+
+<script src="jsfft/lib/complex_array.js"></script>
+<script src="jsfft/lib/fft.js"></script>
+
+</head>
+
+<body>
+<div id="buttons">
+  <input type="button" id="startButton" value="Start">
+  <input type="button" id="stopButton" value="Stop">
+  <input type="text" id="frequencyField">
+</div>
+<div id="container"></div>
+<script type="text/javascript" src="spectrum.js"></script>
+
+</body>
+</html>
