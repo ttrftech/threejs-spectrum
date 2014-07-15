@@ -1,0 +1,3 @@
+[submodule "jsfft"]
+	path = jsfft
+	url = git@github.com:dntj/jsfft.git
