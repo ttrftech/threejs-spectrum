@@ -36,16 +36,24 @@ function initialize() {
 	}
 
 	function createParticleSystem(frequencyData) {
+		var bundle = new THREE.Object3D();
+
 		var z = 500.0;
 		var pts = [];
 		var l = frequencyData.length;
 		for (var i = 0; i < l; i++) {
-			pts.push(i - l/2);
-			pts.push(frequencyData[i]);
-			pts.push(z);
+			var geometry = new THREE.Geometry();
+			var x = i - l/2;
+			var y = frequencyData[i];
+			geometry.vertices.push(new THREE.Vector3(x, 0, z)); 
+			geometry.vertices.push(new THREE.Vector3(x, y, z));
+			var color = lut.getColor(y);
+			var material = new THREE.LineBasicMaterial({color: color});
+			var line = new THREE.Line(geometry, material);
+			bundle.add(line);
 		}
 		//z += zstep;
-		array = new Float32Array(pts);
+		return bundle;
 
 		var geometry = new THREE.BufferGeometry();
 		geometry.attributes = {
@@ -76,6 +84,8 @@ function initialize() {
 
 		var material = new THREE.ParticleBasicMaterial( { size: 5, vertexColors: true } );
 		return new THREE.ParticleSystem( geometry, material );
+
+
 	}
 
 	camera = new THREE.PerspectiveCamera( 27, window.innerWidth / window.innerHeight, 5, 100000 );
