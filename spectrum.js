@@ -39,48 +39,31 @@ function initialize() {
 		var l = data.length;
 		if (l > 4096)
 			l = 4096;
+
+
+
+		var positions = new THREE.Float32Attribute(l, 3);
+		var colors = new THREE.Float32Attribute(l, 3);
 		for (var i = 0; i < l/2; i++) {
-			pts.push(i - l/2);
-			pts.push(data[i + l/2]);
-			pts.push(z);
+			var x = i - l/2;
+			var y = data[i + l/2];
+			positions.setXYZ(i, x, y, z);
+			var color = lut.getColor(y);
+			colors.setXYZ(i, color.r, color.g, color.b);
 		}
 		for ( ; i < l; i++) {
-			pts.push(i - l/2);
-			pts.push(data[i - l/2]);
-			pts.push(z);
+			var x = i - l/2;
+			var y = data[i - l/2];
+			positions.setXYZ(i, x, y, z);
+			var color = lut.getColor(y);
+			colors.setXYZ(i, color.r, color.g, color.b);
 		}
-		//z += zstep;
-		array = new Float32Array(pts);
-
 		var geometry = new THREE.BufferGeometry();
-		geometry.attributes = {
-			position: {
-				itemSize: 3,
-				array: array, 
-				numItems: array.length
-			},
-			color: {
-				itemSize: 3,
-				array: new Float32Array(array.length),
-				numItems: array.length
-			}
-		}
+		var material = new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.7 });
+		geometry.addAttribute('position', positions);
+		geometry.addAttribute('color', colors);
 		geometry.computeBoundingSphere();
-
-		var positions = geometry.attributes.position.array;
-		var colors = geometry.attributes.color.array;
-
-		//var color = new THREE.Color();
-		for ( var i = 0; i < positions.length; i += 3 ) {
-			var color = lut.getColor(positions[i+1]);
-			//color.setRGB(1,1,1);
-			colors[ i ]     = color.r;
-			colors[ i + 1 ] = color.g;
-			colors[ i + 2 ] = color.b;
-		}
-
-		var material = new THREE.ParticleBasicMaterial( { size: 5, vertexColors: true } );
-		return new THREE.ParticleSystem( geometry, material );
+		return new THREE.Line(geometry, material);
 	}
 
 	function fft(samples) {
@@ -121,11 +104,11 @@ function initialize() {
 		if (radio.isPlaying() && samples) {
 			//console.log(samples.length);
 			var i;
-			for (i = 0; i < scene.children.length - 200; i++) {
+			for (i = 0; i < scene.children.length - 400; i++) {
 				scene.remove(scene.children[i]);
 			}
 			for (; i < scene.children.length; i++) {
-				scene.children[i].translateZ(-10);
+				scene.children[i].translateZ(-5);
 			}
 
 			data = fft(new Uint8Array(samples));
