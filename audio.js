@@ -35,7 +35,7 @@ function initialize() {
 		render();
 	}
 
-	function createParticleSystem(frequencyData) {
+	function createPlot(frequencyData) {
 		var z = 500.0;
 		var l = frequencyData.length;
 
@@ -93,13 +93,6 @@ function initialize() {
 			var animation = function(){
 				analyser.getByteFrequencyData(frequencyData);
 				//analyser.getByteTimeDomainData(timeDomainData);
-                //frequencyContext.clearRect(0, 0, width, height);
-				//frequencyContext.beginPath();
-				//frequencyContext.moveTo(0, height - frequencyData[0]);
-				//for (var i = 1, l = frequencyData.length; i < l; i++) {
-				//	frequencyContext.lineTo(i, height - frequencyData[i]);
-				//}
-				//frequencyContext.stroke();
 
 				//scene = new THREE.Scene();
 				var i;
@@ -109,7 +102,7 @@ function initialize() {
 				for (; i < scene.children.length; i++) {
 					scene.children[i].translateZ(-5);
 				}				
-				particleSystem = createParticleSystem(frequencyData);
+				particleSystem = createPlot(frequencyData);
 				scene.add( particleSystem );
 				render();
 				controls.update();
