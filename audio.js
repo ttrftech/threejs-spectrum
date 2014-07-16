@@ -49,7 +49,7 @@ function initialize() {
 			colors.setXYZ(i, color.r, color.g, color.b);
 		}
 		var geometry = new THREE.BufferGeometry();
-		var material = new THREE.LineBasicMaterial({ vertexColors: true });
+		var material = new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.7 });
 		geometry.addAttribute('position', positions);
 		geometry.addAttribute('color', colors);
 		geometry.computeBoundingSphere();
@@ -103,11 +103,11 @@ function initialize() {
 
 				//scene = new THREE.Scene();
 				var i;
-				for (i = 0; i < scene.children.length - 100; i++) {
+				for (i = 0; i < scene.children.length - 200; i++) {
 					scene.remove(scene.children[i]);
 				}
 				for (; i < scene.children.length; i++) {
-					scene.children[i].translateZ(-10);
+					scene.children[i].translateZ(-5);
 				}				
 				particleSystem = createParticleSystem(frequencyData);
 				scene.add( particleSystem );
