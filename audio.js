@@ -36,56 +36,24 @@ function initialize() {
 	}
 
 	function createParticleSystem(frequencyData) {
-		var bundle = new THREE.Object3D();
-
 		var z = 500.0;
-		var pts = [];
 		var l = frequencyData.length;
+
+		var positions = new THREE.Float32Attribute(l, 3);
+		var colors = new THREE.Float32Attribute(l, 3);
 		for (var i = 0; i < l; i++) {
-			var geometry = new THREE.Geometry();
 			var x = i - l/2;
 			var y = frequencyData[i];
-			geometry.vertices.push(new THREE.Vector3(x, 0, z)); 
-			geometry.vertices.push(new THREE.Vector3(x, y, z));
+			positions.setXYZ(i, x, y, z);
 			var color = lut.getColor(y);
-			var material = new THREE.LineBasicMaterial({color: color});
-			var line = new THREE.Line(geometry, material);
-			bundle.add(line);
+			colors.setXYZ(i, color.r, color.g, color.b);
 		}
-		//z += zstep;
-		return bundle;
-
 		var geometry = new THREE.BufferGeometry();
-		geometry.attributes = {
-			position: {
-				itemSize: 3,
-				array: array, 
-				numItems: array.length
-			},
-			color: {
-				itemSize: 3,
-				array: new Float32Array(array.length),
-				numItems: array.length
-			}
-		}
+		var material = new THREE.LineBasicMaterial({ vertexColors: true });
+		geometry.addAttribute('position', positions);
+		geometry.addAttribute('color', colors);
 		geometry.computeBoundingSphere();
-
-		var positions = geometry.attributes.position.array;
-		var colors = geometry.attributes.color.array;
-
-		//var color = new THREE.Color();
-		for ( var i = 0; i < positions.length; i += 3 ) {
-			var color = lut.getColor(positions[i+1]);
-			//color.setRGB(1,1,1);
-			colors[ i ]     = color.r;
-			colors[ i + 1 ] = color.g;
-			colors[ i + 2 ] = color.b;
-		}
-
-		var material = new THREE.ParticleBasicMaterial( { size: 5, vertexColors: true } );
-		return new THREE.ParticleSystem( geometry, material );
-
-
+		return new THREE.Line(geometry, material);
 	}
 
 	camera = new THREE.PerspectiveCamera( 27, window.innerWidth / window.innerHeight, 5, 100000 );
