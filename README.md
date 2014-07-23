@@ -49,5 +49,5 @@ On Chrome Web Browser,
 
 ## Acknowledgment
 
-   - three.js [http://threejs.org/](https://github.com/mrdoob/three.js/)
+   - three.js [http://threejs.org/](http://threejs.org/) [https://github.com/mrdoob/three.js/](https://github.com/mrdoob/three.js/)
    - jsfft [https://github.com/dntj/jsfft](https://github.com/dntj/jsfft)
