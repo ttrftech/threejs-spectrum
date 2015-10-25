@@ -13,7 +13,7 @@ Two options of signal source, audio and radio.
 
 ### Run
 
-    $ git clone https://github.com/edy555/threejs-spectrum.git
+    $ git clone https://github.com/ttrftech/threejs-spectrum.git
     $ open threejs-spectrum/audio.html
 
 Or just open following [URL](http://edy555.github.io/threejs-spectrum/audio.html).
@@ -29,9 +29,9 @@ Or just open following [URL](http://edy555.github.io/threejs-spectrum/audio.html
 
 ### Setup
 
-    $ git clone https://github.com/edy555/threejs-spectrum.git
+    $ git clone https://github.com/ttrftech/threejs-spectrum.git
     $ cd threejs-spectrum
-    $ git submodules update --init
+    $ git submodule update --init
 
 ### Run
 
