@@ -20,8 +20,8 @@ function RadioController() {
 
   var TUNERS = [{'vendorId': 0x0bda, 'productId': 0x2832}, 
                 {'vendorId': 0x0bda, 'productId': 0x2838}];
-  //var SAMPLE_RATE = 1024000; // Must be a multiple of 512 * BUFS_PER_SEC
-  var SAMPLE_RATE = 2048000;
+  var SAMPLE_RATE = 1024000; // Must be a multiple of 512 * BUFS_PER_SEC
+  //var SAMPLE_RATE = 2048000;
   var BUFS_PER_SEC = 100;
   var SAMPLES_PER_BUF = Math.floor(SAMPLE_RATE / BUFS_PER_SEC);
   var NULL_FUNC = function(){};

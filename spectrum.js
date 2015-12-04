@@ -140,11 +140,25 @@ function initialize() {
 	function updateFrequency() {
 		frequencyField.value = radio.getFrequency() / 1e6;
 	}
+	function changeFreqButton(button) {
+		frequencyField.value = button.value;
+		changeFrequency();
+	}
 
     startButton.addEventListener('click', start);
     stopButton.addEventListener('click', stop);
     frequencyField.addEventListener('focus', updateFrequency);
     frequencyField.addEventListener('change', changeFrequency);
+
+    freq1.addEventListener('click', function() { changeFreqButton(freq1) });
+    freq2.addEventListener('click', function() { changeFreqButton(freq2) });
+    freq3.addEventListener('click', function() { changeFreqButton(freq3) });
+    freq4.addEventListener('click', function() { changeFreqButton(freq4) });
+    freq5.addEventListener('click', function() { changeFreqButton(freq5) });
+    freq6.addEventListener('click', function() { changeFreqButton(freq6) });
+    freq7.addEventListener('click', function() { changeFreqButton(freq7) });
+
+	updateFrequency();
 }
 
 window.addEventListener("load", initialize, false);
