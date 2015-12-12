@@ -13,10 +13,7 @@ Two options of signal source, audio and radio.
 
 ### Run
 
-    $ git clone https://github.com/ttrftech/threejs-spectrum.git
-    $ open threejs-spectrum/audio.html
-
-Or just open following [URL](http://edy555.github.io/threejs-spectrum/audio.html).
+  Just open following link [https://ttrftech.github.io/threejs-spectrum/audio.html](https://ttrftech.github.io/threejs-spectrum/audio.html). If permission to access microphone required, click allow button.
 
 ===
 
